@@ -27,4 +27,16 @@ for (col in colnames(sugar)[(2:3)]){
 }
 
 
+# fit the linear model for part c
+model1.lm <- lm("lconsump ~ price", data = sugar)
 
+# print the statsmodels tyle summary table
+print(summary(model1.lm))
+
+# get a prediction from the model
+prediction = predict(model1.lm, newdata=data.frame("price"=c(6)))
+
+
+# plot lconsump and price with the fitted regression line
+plot(sugar$price, sugar$lconsump, xlab="price", ylab="lconsump", main=glue("Plot of {col} vs Price"))
+abline(model1.lm)
